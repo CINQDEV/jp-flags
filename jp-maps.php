@@ -6,3 +6,4 @@
 * Author: WRM
 
 */
+require_once 'functions/admin_display_button.php'; //admin functions
