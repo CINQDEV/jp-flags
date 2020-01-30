@@ -1,37 +1,18 @@
-$(document).ready(function() {
-    var tabMarque = [];
+jQuery(document).ready(function() {
+  let dropdown = jQuery('#locality-dropdown');
+
+  dropdown.empty();
   
-    $.getJSON('data.json', function(data) {
+  dropdown.append('<option selected="true" disabled>Choose Country</option>');
+  dropdown.prop('selectedIndex', 0);
   
-      // alert(data);
-  
-      $.each(data, function(index, val) {
-        tabMarque[index] = val;
-      });
-    });
-  
-    $('#Marque').change(function(event) {
-      // alert('Marque_change');
-      var marque = $(this).val();
-      // alert(marque);
-  
-      var htmlOption = '<option value="0">Choix du serie</option>';
-      if (marque !== '0') {
-        var itemsMarque = tabMarque[marque];
-        //alert(JSON.stringify(itemsMarque));
-        $.each(itemsMarque, function(key, value) {
-          //alert("k=" + key + " v=" + JSON.stringify(value));
-          htmlOption += '<option value="' + value[0] + '" data-href="' + value[2] + '">' + value[1] + '</option>';
-        });
-      }
-      $('#Serie').html(htmlOption);
-    });
-  
-    $('#go').click(function() {
-      //alert('go_click');
-      var selected = $('#Serie').find('option:selected');
-      var href = selected.data('href');
-      // alert('Go to: '+href);
-      window.location = href;
-    });
+  const url = 'http://jpi-tmxnews.localhost/wp-content/plugins/jp-flags/assets/js/country_full.json';
+ 
+  console.log(url);
+  // Populate dropdown with list of provinces
+  jQuery.getJSON(url, function (data) {
+    jQuery.each(data, function (key, entry) {
+      dropdown.append(jQuery('<option></option>').attr('value', entry.abbreviation).text(entry.name));
+    })
+  });
   });
