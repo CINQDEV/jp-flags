@@ -12,7 +12,7 @@ function admin_enqueue_style() {
     $ver_num = mt_rand(); // on each call/load of the style the $ver_num will get different value
     wp_enqueue_style( 'flag_css', plugins_url( 'assets/css/flag.css', __FILE__ ),false, $ver_num, 'all');
     wp_enqueue_script( 'dropdown_js', plugins_url( 'assets/js/dropdown.js', __FILE__ ), array('jquery'), $ver_num,  'all');
-    //wp_localize_script( 'countries.json', 'dm_ajax', array( 'ajax_url' => admin_url('admin-ajax.php')) );
+    
     }
 
 add_action('admin_enqueue_scripts', 'admin_enqueue_style');
